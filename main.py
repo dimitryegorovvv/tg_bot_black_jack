@@ -1,5 +1,6 @@
 import telebot
 import random
+import time
 from token_file import token
 bot=telebot.TeleBot(token)
 
@@ -19,37 +20,45 @@ bot_cards_count = 2
 @bot.message_handler()
 def main(message):
     global player_cards_sum
-
-    if message.text.lower()!='y':
-
-        if len(player_cards) != 5 or player_choise != 'n':
-            bot.send_message(message.chat.id, f'карты бота: {bot_cards[0]} ; ?')
-            bot.send_message(message.chat.id, f'ваши карты: {' ; '.join(player_cards)}')
-            bot.send_message(message.chat.id, f'сумма ваших карт: {player_cards_sum}')
-
-            if player_cards_sum > 21:
-                bot.send_message(message.chat.id, 'вы проиграли')
-                # exit(0)
-            bot.send_message(message.chat.id, 'взять карту? (y/n) ')
+    global player_cards_count
 
     if message.text.lower()=='y':
-        global player_cards_count
         player_cards_count = player_cards_count + 1
         player_cards.append(random.choice(cards))
         player_cards_sum = player_cards_sum + convert_cards[player_cards[player_cards_count]]
 
         bot.send_message(message.chat.id, f'карты бота: {bot_cards[0]} ; ?')
+        time.sleep(1)
         bot.send_message(message.chat.id, f'ваши карты: {' ; '.join(player_cards)}')
+        time.sleep(1)
         bot.send_message(message.chat.id, f'сумма ваших карт: {player_cards_sum}')
+        time.sleep(1)
+        bot.send_message(message.chat.id, 'взять карту? (y/n) ')
+
+    elif len(player_cards) != 5 or player_choise != 'n':
+        bot.send_message(message.chat.id, f'карты бота: {bot_cards[0]} ; ?')
+        time.sleep(1)
+        bot.send_message(message.chat.id, f'ваши карты: {' ; '.join(player_cards)}')
+        time.sleep(1)
+        bot.send_message(message.chat.id, f'сумма ваших карт: {player_cards_sum}')
+        time.sleep(1)
+
+        if player_cards_sum > 21:
+            bot.send_message(message.chat.id, 'вы проиграли')
+            # exit(0)
+        bot.send_message(message.chat.id, 'взять карту? (y/n) ')
+
+    # if message.text.lower()!='y':
 
     if len(player_cards) == 5:
         bot.send_message(message.chat.id, f'ваши карты: {' ; '.join(player_cards)}')
         bot.send_message(message.chat.id, f'сумма ваших карт: {player_cards_sum}')
     if player_cards_sum > 21:
-        bot.send_message(message.chat.id, f'ваши карты: {' ; '.join(player_cards)}')
-        bot.send_message(message.chat.id, f'сумма ваших карт: {player_cards_sum}')
+        # bot.send_message(message.chat.id, f'ваши карты: {' ; '.join(player_cards)}')
+        # bot.send_message(message.chat.id, f'сумма ваших карт: {player_cards_sum}')
         bot.send_message(message.chat.id, 'вы проиграли')
         # exit(0)
+
 
 @bot.message_handler()
 def main(message):
