@@ -1,7 +1,6 @@
 import telebot
 import random
 import time
-import logging
 from token_file import token
 bot = telebot.TeleBot(token)
 
