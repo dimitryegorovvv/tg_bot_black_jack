@@ -53,10 +53,7 @@ def main(message):
                 only_new_game = True
 
             elif player_cards_sum == 21 and bot_cards_sum == 20:
-                bot.send_message(message.chat.id,'вы выиграли')
-                bot.send_message(message.chat.id, 'h - новая игра')
-                only_new_game = True
-                break
+                pass
 
             else:
                 bot_cards.append(random.choice(cards))
