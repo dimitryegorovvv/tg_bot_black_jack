@@ -56,6 +56,7 @@ def main(message):
                 bot.send_message(message.chat.id,'вы выиграли')
                 bot.send_message(message.chat.id, 'h - новая игра')
                 only_new_game = True
+                break
 
             else:
                 bot_cards.append(random.choice(cards))
