@@ -32,9 +32,11 @@ def main(message):
         bot.send_message(message.chat.id, 'я не знаю такую команду.\nh - новая игра')
 
     if (message.text.lower() == 'n' and only_new_game == False) or len(player_cards) == 5:
-        bot.send_message(message.chat.id, f'очередь бота:\n'
-                                          f'карты бота: {' ; '.join(bot_cards)}\n'
-                                          f'сумма карт бота: {bot_cards_sum}')
+        bot.send_message(message.chat.id, 'очередь бота:')
+        time.sleep(1)
+        bot.send_message(message.chat.id, f'карты бота: {' ; '.join(bot_cards)}')
+        time.sleep(1)
+        bot.send_message(message.chat.id, f'сумма карт бота: {bot_cards_sum}')
         time.sleep(1)
 
         while (player_cards_sum >= bot_cards_sum and len(bot_cards) != 5
