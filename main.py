@@ -40,7 +40,7 @@ def main(message):
         time.sleep(1)
 
         while (player_cards_sum >= bot_cards_sum and len(bot_cards) != 5
-                and bot_cards_sum < 22):
+                and bot_cards_sum < 22 and its_draw != True):
 
             if ((player_cards_sum == 21 and bot_cards_sum == 21)
                     or (player_cards_sum == 20 and bot_cards_sum == 20)
@@ -50,6 +50,7 @@ def main(message):
                     or (player_cards_sum == 16 and bot_cards_sum == 16)):
                 bot.send_message(message.chat.id,'ничья')
                 bot.send_message(message.chat.id, 'h - новая игра')
+                its_draw = True
                 only_new_game = True
 
             elif player_cards_sum == 21 and bot_cards_sum == 20:
